@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Best Friend Sneha</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            overflow: hidden;
+        }
+        
+        .container {
+            max-width: 800px;
+            padding: 20px;
+        }
+        
+        .heart {
+            font-size: 100px;
+            animation: beat 1.5s infinite alternate;
+            transform-origin: center;
+            margin-bottom: 30px;
+        }
+        
+        @keyframes beat {
+            to {
+                transform: scale(1.2);
+                text-shadow: 0 0 15px #ff0000;
+            }
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn {
+            background: #ff4757;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:hover {
+            background: #ff6b81;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .message {
+            display: none;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 30px;
+            color: #333;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1.5s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .message h2 {
+            color: #ff4757;
+            margin-bottom: 20px;
+        }
+        
+        .message p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .heart-particle {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0;
+            animation: float 4s ease-in infinite;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts" id="hearts"></div>
+    
+    <div class="container">
+        <div class="heart">❤️</div>
+        <h1>Welcome to My Heart, Sneha!</h1>
+        
+        <button class="btn" id="revealBtn">Click Here for a Special Message</button>
+        
+        <div class="message" id="message">
+            <h2>To My Amazing Best Friend Sneha,</h2>
+            <p>From the moment we became friends, my life has been filled with so much joy and laughter. You're not just my best friend - you're the sister I never had, my partner in crime, and my greatest support system.</p>
+            <p>Your kindness, your strength, and your beautiful soul inspire me every single day. No matter what life throws at us, I know we'll always have each other's backs.</p>
+            <p>Thank you for all the memories we've created together and for all the adventures that are still to come. You make every day brighter just by being in it.</p>
+            <p>No matter where life takes us, you'll always have a special place in my heart. Here's to many more years of friendship, laughter, and love!</p>
+            <p>With all my heart,</p>
+            <p>Your Best Friend ❤️</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('revealBtn').addEventListener('click', function() {
+            this.style.display = 'none';
+            document.getElementById('message').style.display = 'block';
+            createHearts();
+        });
+        
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts');
+            const colors = ['#ff4757', '#ff6b81', '#ff8fa3', '#ffb3c1', '#ffccd5'];
+            
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.classList.add('heart-particle');
+                    heart.innerHTML = '❤️';
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.animationDuration = 3 + Math.random() * 7 + 's';
+                    heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+                    heart.style.fontSize = (10 + Math.random() * 30) + 'px';
+                    heartsContainer.appendChild(heart);
+                    
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 10000);
+                }, i * 200);
+            }
+        }
+    </script>
+</body>
+</html>
